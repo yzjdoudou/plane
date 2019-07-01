@@ -11,7 +11,8 @@
     export default {
         data() {
             return {
-                maxPage: ''
+                maxPage: '',
+
             }
         },
       components:{
@@ -19,9 +20,10 @@
         Page
       },
       async created(){
-        let {data:{total},data:{count}}= await  this.$axios.get('https://api.douban.com/v2/movie/top250?count=20&&start=20')
-        this.maxPage=Math.ceil(total/count)
-      }
+        let {data:{total},data:{count}}= await  this.$axios.get('/api/v2/movie/top250?count=20&&start=0')
+  this.maxPage=Math.ceil(total/count)
+
+  }
     }
 </script>
 

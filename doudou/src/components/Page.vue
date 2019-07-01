@@ -1,10 +1,10 @@
 <template>
     <div class="filmPage">
-      <ud>
+      <ul>
         <li v-for="(page,index) in maxPage">
-        <router-link :to="{path:'/',query:{page:index}}">{{page}}</router-link>
+        <router-link :to="{path:'/',query:{id:index}}" >{{page}}</router-link>
         </li>
-      </ud>
+      </ul>
     </div>
 </template>
 

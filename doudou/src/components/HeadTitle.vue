@@ -7,9 +7,10 @@
 <script>
   export default {
     name: 'HeadTitle',
+    props:['msg']
     data () {
       return {
-        msg: '豆瓣电影Top250'
+
       }
     }
   }

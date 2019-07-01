@@ -1,7 +1,7 @@
 <template>
     <div class="filmsList">
       <ul>
-        <router-link :to="{name:'SingleFilelink',params:{id:}}" v-for="(film,index) in subjects" tag="li" :key="index">
+        <router-link :to="{name:'SingleFilelink',params:{id:'subjects.id'}}" v-for="(film,index) in subjects" tag="li" :key="index">
             <img src="film.images.medium" alt="">
             <p>{{film.original_title}}</p>
             <p>
@@ -16,17 +16,17 @@
     export default {
       data(){
         return{
-          subjects:[]
+          subjects:[],
         }
       },
       async created(){
-        let {data:{subjects}}= await  this.$axios.get('https://api.douban.com/v2/movie/top250?count=20&&start=0')
-        this.subjects=subjects
+        let {data}= await  this.$axios.get('/api/v2/movie/top250?count=20&&start=0')
+        this.subjects=data.subjects
       },
       watch:{
         $route:{
          async handler(){
-           let {data:{subjects}}= await  this.$axios.get('https://api.douban.com/v2/movie/top250?count=20&&start=+this.route.query*20+')
+           let {data:{subjects}}= await  this.$axios.get('https://api.douban.com/v2/movie/top250?count=20&&start='+this.route.query.page*20)
       this.subjects=subjects
           }
         }
